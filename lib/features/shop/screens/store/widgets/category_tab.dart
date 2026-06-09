@@ -20,6 +20,7 @@ class TCategoryTab extends StatelessWidget {
                 children: [
                   /// -- Brands
                   const TBrandShowcase(images: [TImages.productImage3, TImages.productImage2, TImages.productImage1]),
+                  const TBrandShowcase(images: [TImages.productImage3, TImages.productImage2, TImages.productImage1]),
                   const SizedBox(height: TSizes.spaceBtwItems),
       
       

@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
+import 'package:t_store/features/personalization/screens/settings/settings.dart';
 import 'package:t_store/features/shop/screens/home/widgets/home.dart';
 import 'package:t_store/features/shop/screens/store/store.dart';
+import 'package:t_store/features/shop/screens/wishlist/wishlist.dart';
 import 'package:t_store/utils/constants/colors.dart';
 import 'package:t_store/utils/helpers/helper_functions.dart';
 
@@ -43,8 +45,8 @@ class NavigationController extends GetxController {
   final screens = [
     const HomeScreen(), // Home Screen
     const StoreScreen(), // Store Screen
-    Container(color: Colors.blue), // Wishlist Screen
-    Container(color: Colors.yellow), // Profile Screen
+    const FavouriteScreen(), // Wishlist Screen
+    const SettingsScreen(), // Profile Screen
   ];
 
   }
