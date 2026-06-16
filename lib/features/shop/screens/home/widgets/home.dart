@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:t_store/common/widgets/containers/primary_header_container.dart';
 import 'package:t_store/common/widgets/containers/search_container.dart';
 import 'package:t_store/common/widgets/layouts/grid_layout.dart';
-import 'package:t_store/common/widgets/product_cards/product_card_vertical.dart';
+import 'package:t_store/common/widgets/products/product_cards/product_card_vertical.dart';
 import 'package:t_store/common/widgets/texts/section_heading.dart';
 import 'package:t_store/features/shop/screens/home/promo_slider.dart';
 import 'package:t_store/features/shop/screens/home/widgets/home_appbar.dart';
