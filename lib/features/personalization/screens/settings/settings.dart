@@ -135,7 +135,7 @@ class SettingsScreen
                   title: 'HD Image Quality',
                   subTitle: 'Set image quality to be seen',
                   trailing: Switch(
-                    value: false,
+                    value: true,
                     onChanged: (value) {},
                   ),
                 ),
