@@ -1,16 +1,32 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_native_splash/flutter_native_splash.dart';
+import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
+import 'package:t_store/data/repositories.authentication/authentication.repository.dart';
+import 'package:t_store/firebase_options.dart';
 import 'app.dart';
 
 
-void main() {
+/// -- Entry point of Flutter App
+Future<void> main() async {
 
-  // Todo: Add Widgets Binding
-  // Todo: Init Local Storage
-  // Todo: Await Native Splash
-  // Todo: Ininalize Firebase
-  // Todo: Initialize Authentication
+  // Add Widgets Binding
+  final WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
 
-  
+  // -- GetX Local Storage
+  await GetStorage.init();
+
+  // -- Await Native Splash until other items load
+  FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
+
+  // Todo: Ininalize Firebase & Authentication Repository
+await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform).then(
+  (FirebaseApp value) => Get.put(AuthenticationRepository())
+  );
+
+
    
+  // Load all the Material Design / Themes / Localizations / Bidings
   runApp(const App());
 }
