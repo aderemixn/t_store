@@ -6,6 +6,7 @@ import 'package:t_store/common/widgets/containers/primary_header_container.dart'
 import 'package:t_store/common/widgets/list_tiles/settings_menu_tile.dart';
 import 'package:t_store/common/widgets/list_tiles/user_profile_tile.dart';
 import 'package:t_store/common/widgets/texts/section_heading.dart';
+import 'package:t_store/data/repositories/authentication/authentication_repository.dart';
 import 'package:t_store/features/personalization/screens/address/address.dart';
 import 'package:t_store/features/personalization/screens/profile/profile.dart';
 import 'package:t_store/features/shop/screens/order/order.dart';
@@ -146,10 +147,13 @@ class SettingsScreen
                 SizedBox(
                   width: double.infinity,
                   child: OutlinedButton(
-                    onPressed: () {},
+                    onPressed: () async {
+                    await AuthenticationRepository.instance.logout();
+                  },
                     child: const Text('Logout'),
                   ),
-                ),
+                  ),
+                
                 const SizedBox(height: TSizes.spaceBtwSections * 2.5)
               ],
             ),

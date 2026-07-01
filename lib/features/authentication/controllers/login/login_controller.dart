@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
-import 'package:t_store/data/repositories/authentication/authentication.repository.dart';
-import 'package:t_store/features/authentication/screens/login/login.dart';
+import 'package:t_store/data/repositories/authentication/authentication_repository.dart';
+import 'package:t_store/features/personalization/controllers/user_controller.dart';
 import 'package:t_store/utils/constants/image_strings.dart';
 import 'package:t_store/utils/network/network_manager.dart';
 import 'package:t_store/utils/popups/full_screen_loader.dart';
@@ -19,6 +19,7 @@ class LoginController extends GetxController {
   final email = TextEditingController();
   final password = TextEditingController();
   GlobalKey<FormState> loginFormKey = GlobalKey<FormState>();
+  final userController = Get.put(UserController());
 
   @override
   void onInit() {
@@ -74,6 +75,43 @@ class LoginController extends GetxController {
       );
     }
   }
-  
+
+  /// Google Sign In Authentication
+  Future<void> googleSignIn() async {
+    try {
+      // Start Loading
+      TFullScreenLoader.openLoadingDialog(
+        'Logging you in...',
+        TImages.docerAnimation,
+      );
+
+      // Check Internet Connectivity
+      final isConnected = await NetworkManager.instance.isConnected();
+      if (!isConnected) {
+        TFullScreenLoader.stopLoading();
+        return;
+      }
+
+      // Login User using Google Authentication
+      final userCredentials =
+          await AuthenticationRepository.instance.signInWithGoogle();
+
+      // Save User Record to Firestore
+      await userController.saveUserRecord(userCredentials);
+
+      // Remove Loader
+      TFullScreenLoader.stopLoading();
+
+       // Redirect
+      AuthenticationRepository.instance.screenRedirect();
+    } catch (e) {
+      // Remove Loader
+      TFullScreenLoader.stopLoading();
+      TLoaders.errorSnackBar(
+        title: 'Oh Snap!',
+        message: e.toString(),
+      );
+    }
+  }
 
 }
