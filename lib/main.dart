@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
-import 'package:t_store/data/repositories.authentication/authentication/authentication.repository.dart';
+import 'package:t_store/data/repositories/authentication/authentication.repository.dart';
 import 'package:t_store/firebase_options.dart';
 import 'app.dart';
 
@@ -20,7 +20,7 @@ Future<void> main() async {
   // -- Await Native Splash until other items load
   FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
 
-  // Todo: Ininalize Firebase & Authentication Repository
+  // Initialize Firebase & Authentication Repository
 await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform).then(
   (FirebaseApp value) => Get.put(AuthenticationRepository())
   );
